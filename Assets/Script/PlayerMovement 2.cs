@@ -24,14 +24,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded = false;
 
     private void Start()
-    {   
+    {
         rgb = GetComponent<Rigidbody>();
     }
     void Update()
     {
         // Input for Movement
         moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        
+
         GroundCheck();
         UpdateState();
         // Jump Input
@@ -41,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
             rgb.AddForce(Vector3.up * 10, ForceMode.Impulse);
         }
         ApplyMovement();
-        
+
     }
     void GroundCheck()
     {
         //Ground Check
-        float rayLength = 2.0f;
+        float rayLength = 10.0f;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, rayLength, LayerMask.GetMask("Default"));
         Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
 
